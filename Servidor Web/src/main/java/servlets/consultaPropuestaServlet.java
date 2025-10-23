@@ -48,7 +48,7 @@ public class consultaPropuestaServlet extends HttpServlet {
         String orden = request.getParameter("orden");
         String tipo = request.getParameter("tipo");
         
-        List<PropuestaDTO> propuestas = Sistema.listarPropuestasNoIngresadas();
+        List<PropuestaDTO> propuestas = Sistema.listarPropuestasNoIngresadas(); //aaaaaaaa
 
         //FILTRO DE TEXTO
         if (filtros != null && !filtros.trim().isEmpty()) {

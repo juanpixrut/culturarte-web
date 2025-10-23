@@ -86,8 +86,8 @@ if [[ ! -f "$ENVFILE" ]]; then
   cat >"$ENVFILE" <<'EOF'
 MYSQL_PORT=3307
 MYSQL_DATABASE=culturarte
-MYSQL_USER=app
-MYSQL_PASSWORD=app123
+MYSQL_USER=tecnologo
+MYSQL_PASSWORD=tecnologo
 MYSQL_ROOT_PASSWORD=root
 TZ=America/Montevideo
 EOF

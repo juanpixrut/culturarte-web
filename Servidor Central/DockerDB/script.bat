@@ -54,8 +54,8 @@ if not exist "%ENVFILE%" (
   >"%ENVFILE%" (
     echo MYSQL_PORT=3307
     echo MYSQL_DATABASE=culturarte
-    echo MYSQL_USER=app
-    echo MYSQL_PASSWORD=app123
+    echo MYSQL_USER=tecnologo
+    echo MYSQL_PASSWORD=tecnologo
     echo MYSQL_ROOT_PASSWORD=root
     echo TZ=America/Montevideo
   )
@@ -75,7 +75,7 @@ echo [LOG] Ultimas lineas:
 docker logs --tail=50 culturarte-mysql
 
 echo.
-echo [OK] Conectate a 127.0.0.1:%MYSQL_PORT% (ver %ENVFILE%) user=app pass=app123 db=culturarte
+echo [OK] Conectate a 127.0.0.1:%MYSQL_PORT% (ver %ENVFILE%) user=tecnologo pass=tecnologo db=culturarte
 
 :END
 echo.
