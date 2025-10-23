@@ -9,12 +9,15 @@
     <class>logica.propuesta</class>
     <class>logica.colaboracion</class>
     <class>logica.historialEstado</class>
+    <class>logica.comentario</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/culturarte?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/culturarte?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="root"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="hibernate.cache.use_second_level_cache" value="false"/>
+      <property name="hibernate.cache.use_query_cache" value="false"/>
     </properties>
   </persistence-unit>
 </persistence>

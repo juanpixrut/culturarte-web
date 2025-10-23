@@ -191,12 +191,13 @@
     <div class="card">
         <h3>⭐ Propuestas favoritas</h3>
         <table>
-            <tr><th>Título</th><th>Tipo</th><th>Estado</th></tr>
+            <tr><th>Título</th><th></th><th>Tipo</th><th>Estado</th></tr>
             <c:forEach var="p" items="${listaPropuestasFav}">
                 <tr>
+                    <td>${p.titulo}</td>
                     <td>            
-                        <a href="consultaPropuestaFullServlet?titulo=${p.titulo}">
-                            ${p.titulo}
+                        <a href="consultaPropuestaFullServlet?titulo=${p.titulo}&origen=publicadas">
+                            Ver Detalle
                         </a>
                     </td>
                     <td>${p.tipoEspectaculo}</td>
@@ -211,13 +212,14 @@
         <div class="card">
             <h3>🎭 Propuestas publicadas</h3>
             <table>
-                <tr><th>Título</th><th>Lugar</th><th>Estado</th></tr>
+                <tr><th>Título</th><th></th><th>Lugar</th><th>Estado</th></tr>
                 <c:forEach var="p" items="${listaPropuestasPub}">
                     <tr>
+                        <td>${p.titulo}</td>
                         <td>            
-                            <a href="consultaPropuestaFullServlet?titulo=${p.titulo}">
-                                ${p.titulo}
-                            </a>
+                        <a href="consultaPropuestaFullServlet?titulo=${p.titulo}&origen=publicadas">
+                            Ver Detalle
+                        </a>
                         </td>
                         <td>${p.lugar}</td>
                         <td>${p.estadoActual}</td>
@@ -232,12 +234,13 @@
         <div class="card">
             <h3>🤝 Colaboraciones realizadas</h3>
             <table>
-                <tr><th>Propuesta</th><th>Monto</th><th>Tipo retorno</th><th>Fecha</th></tr>
+                <tr><th>Propuesta</th><th></th><th>Monto</th><th>Tipo retorno</th><th>Fecha</th></tr>
                         <c:forEach var="c" items="${colaboraciones}">
                     <tr>
+                        <td>${c.propuestaTitulo}</td>
                         <td>            
-                            <a href="consultaPropuestaFullServlet?titulo=${c.propuestaTitulo}">
-                                ${c.propuestaTitulo}
+                            <a href="consultaPropuestaFullServlet?titulo=${c.propuestaTitulo}&origen=publicadas">
+                                Ver Detalle
                             </a>
                         </td>
                         <td>${c.montoAportado}</td>
@@ -253,12 +256,13 @@
     <div class="card">
         <h3>📝 Mis propuestas ingresadas</h3>
         <table>
-            <tr><th>Título</th><th>Lugar</th><th>Estado</th></tr>
+            <tr><th>Título</th><th></th><th>Lugar</th><th>Estado</th></tr>
             <c:forEach var="p" items="${listaPropuestasIng}">
                 <tr>
+                    <td>${p.titulo}</td>
                     <td>
-                        <a href="consultaPropuestaFullServlet?titulo=${p.titulo}">
-                            ${p.titulo}
+                        <a href="consultaPropuestaFullServlet?titulo=${p.titulo}&origen=publicadas">
+                            Ver Detalle
                         </a>
                     </td>
                     <td>${p.lugar}</td>

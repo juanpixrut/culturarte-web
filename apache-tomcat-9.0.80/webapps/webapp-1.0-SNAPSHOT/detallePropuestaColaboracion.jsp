@@ -163,6 +163,27 @@
                 <p><strong>Tipo retorno:</strong> ${propuesta.tipoRetorno}</p>
                 <p><strong>Estado:</strong> ${propuesta.estadoActual}</p>
                 <a class="volver" href="altaColaboracionServlet">⬅️ Volver a la lista</a>
+                
+                <c:if test="${colaboro}">
+                    <div class="card" style="margin-top: 30px;">
+                        <h3>💬 Dejar un comentario</h3>
+                        <form action="dejarComentarioServlet" method="POST" style="display:flex; flex-direction:column; gap:15px; margin-top:10px;">
+                            <input type="hidden" name="titulo" value="${propuesta.titulo}">
+
+                            <textarea name="comentario"
+                                      placeholder="Escribe aquí tu opinión sobre la propuesta..."
+                                      required
+                                      style="width:100%; min-height:100px; border:1px solid #ccc; border-radius:8px; padding:10px; font-family:inherit; font-size:15px; resize:vertical; background:#fafafa;"></textarea>
+
+                            <button type="submit"
+                                    style="align-self:flex-start; background:#3498db; color:white; border:none; padding:10px 20px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:background 0.2s;">
+                                💬 Publicar comentario
+                            </button>
+                        </form>
+                    </div>
+                </c:if>
+                
+                <c:if test="${puedeColaborar}">
                 <!-- Botón de colaborar -->
                 <button id="mostrarFormBtn"
                         style="background:#3498db;
@@ -238,6 +259,7 @@
                         btn.textContent = form.style.display === 'block' ? '🔽 Ocultar formulario' : '🤝 Colaborar';
                     });
                 </script>
+                </c:if>
             </div>
         </div>
     </body>

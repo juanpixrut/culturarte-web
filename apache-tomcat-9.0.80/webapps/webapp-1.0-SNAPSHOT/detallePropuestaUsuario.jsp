@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 
 <%
@@ -29,22 +30,22 @@
                 margin: 0;
                 background: #f5f7fa;
                 color: #2c3e50;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
-        header {
-            background:#2c3e50;
-            color:white;
-            padding:15px 25px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            width:100%; /* 🔹 ocupa todo el ancho */
-            box-sizing: border-box;
-        }
+            header {
+                background:#2c3e50;
+                color:white;
+                padding:15px 25px;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                width:100%; /* 🔹 ocupa todo el ancho */
+                box-sizing: border-box;
+            }
 
             header h1 {
                 margin: 0;
@@ -62,13 +63,13 @@
             }
 
             .container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
-            width: 90%;
-            max-width: 900px;
-            margin-top:60px;
+                background: #fff;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+                width: 90%;
+                max-width: 900px;
+                margin-top:60px;
             }
 
             .card {
@@ -134,33 +135,33 @@
                 background: #2980b9;
             }
             .actions {
-    margin-top: 25px;
-    display: flex;
-    gap: 15px;
-}
+                margin-top: 25px;
+                display: flex;
+                gap: 15px;
+            }
 
-.actions button {
-    background: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
-}
+            .actions button {
+                background: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background 0.3s ease;
+            }
 
-.actions button:hover {
-    background: #2980b9;
-}
+            .actions button:hover {
+                background: #2980b9;
+            }
 
-.actions .cancelar {
-    background: #e74c3c;
-}
+            .actions .cancelar {
+                background: #e74c3c;
+            }
 
-.actions .cancelar:hover {
-    background: #c0392b;
-}
+            .actions .cancelar:hover {
+                background: #c0392b;
+            }
         </style>
     </head>
     <body>
@@ -247,84 +248,114 @@
                         </form>
                     </div>
                 </c:if>
-                <c:if test="${puedeColaborar}">
-                                   <!-- Botón de colaborar -->
-                <button id="mostrarFormBtn"
-                        style="background:#3498db;
-                        color:white;
-                        border:none;
-                        padding:10px 22px;
-                        border-radius:5px;
-                        font-size:15px;
-                        font-weight:bold;
-                        cursor:pointer;
-                        box-shadow:0 2px 4px rgba(0,0,0,0.15);
-                        transition:background 0.2s, transform 0.1s;">
-                    🤝 Colaborar
-                </button>
 
-                <!-- Formulario oculto -->
-                <div id="formColaboracion" style="display:none; margin-top:20px;">
-                    <form action="altaColaboracionServlet" method="POST"
-                          style="display:flex; flex-direction:column; gap:15px;">
+                <c:if test="${not empty comentarios}">
+                    <div class="card" style="margin-top:30px; padding:20px; border-radius:10px; background:#f9f9f9; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                        <h2 style="color:#333; margin-bottom:15px;">💬 Comentarios</h2>
 
-                        <input type="hidden" name="titulo" value="${propuesta.titulo}">
-
-                        <label for="monto"><strong>Monto a colaborar:</strong></label>
-                        <input type="number" id="monto" name="monto" min="1" required
-                               style="padding:10px; border:1px solid #ccc; border-radius:6px;">
-
-                        <label for="tipoRetorno"><strong>Tipo de retorno:</strong></label>
-
-                        <c:choose>
-                            <c:when test="${propuesta.tipoRetorno eq 'Ambas'}">
-                                <select id="tipoRetorno" name="tipoRetorno" required
-                                        style="padding:10px; border:1px solid #ccc; border-radius:6px;">
-                                    <option value="">-- Seleccione --</option>
-                                    <option value="Entrada">Entrada</option>
-                                    <option value="Porcentaje">Porcentaje</option>
-                                </select>
-                            </c:when>
-
-                            <c:when test="${propuesta.tipoRetorno eq 'Entrada'}">
-                                <input type="hidden" name="tipoRetorno" value="Entrada">
-                                <p style="margin:0; font-weight:bold; color:#2c3e50;">🎟️ Retorno: Entrada</p>
-                            </c:when>
-
-                            <c:when test="${propuesta.tipoRetorno eq 'Porcentaje'}">
-                                <input type="hidden" name="tipoRetorno" value="Porcentaje">
-                                <p style="margin:0; font-weight:bold; color:#2c3e50;">💰 Retorno: Porcentaje</p>
-                            </c:when>
-                        </c:choose>
-
-
-                        <button type="submit"
-                                style="align-self:flex-start;
-                                background:#3498db;
-                                color:white;
-                                border:none;
-                                padding:10px 22px;
-                                border-radius:5px;
-                                font-size:15px;
-                                font-weight:bold;
-                                cursor:pointer;
-                                box-shadow:0 2px 4px rgba(0,0,0,0.15);
-                                transition:background 0.2s, transform 0.1s;">
-                            ✅ Confirmar colaboración
-                        </button>
-                    </form>
-                </div>
-
-                <script>
-                    const btn = document.getElementById('mostrarFormBtn');
-                    const form = document.getElementById('formColaboracion');
-                    btn.addEventListener('click', () => {
-                        form.style.display = form.style.display === 'none' ? 'block' : 'none';
-                        btn.textContent = form.style.display === 'block' ? '🔽 Ocultar formulario' : '🤝 Colaborar';
-                    });
-                </script>
+                        <c:forEach var="c" items="${comentarios}">
+                            <div style="margin-bottom:18px; padding:12px; border-left:4px solid #3498db; background:white; border-radius:8px;">
+                                <p style="margin:0; font-weight:bold; color:#2c3e50;">
+                                    ${c.autor.nickname} comentó:
+                                </p>
+                                <p style="margin-top:6px; margin-bottom:0; color:#555; font-size:15px;">
+                                    ${c.texto}
+                                </p>
+                                <p style="font-size:13px; color:#999; margin-top:4px;">
+                                    🕒 <fmt:formatDate value="${c.fecha}" pattern="dd/MM/yyyy HH:mm" />
+                                </p>
+                            </div>
+                        </c:forEach>
+                    </div>
                 </c:if>
-                <a class="volver" href="consultaPropuestaServlet?nickname=${usuario.nickname}">⬅️ Volver a la lista</a>
+
+                <c:choose>
+                    <c:when test="${origen == 'publicadas'}">
+                        <a class="volver" href="consultaUsuarioFullServlet?nickname=${usuario.nickname}">⬅️ Volver a la lista</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="volver" href="consultaPropuestaServlet?nickname=${usuario.nickname}">⬅️ Volver a la lista</a>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:if test="${puedeColaborar}">
+                    <!-- Botón de colaborar -->
+                    <button id="mostrarFormBtn"
+                            style="background:#3498db;
+                            color:white;
+                            border:none;
+                            padding:10px 22px;
+                            border-radius:5px;
+                            font-size:15px;
+                            font-weight:bold;
+                            cursor:pointer;
+                            box-shadow:0 2px 4px rgba(0,0,0,0.15);
+                            transition:background 0.2s, transform 0.1s;">
+                        🤝 Colaborar
+                    </button>
+
+                    <!-- Formulario oculto -->
+                    <div id="formColaboracion" style="display:none; margin-top:20px;">
+                        <form action="altaColaboracionServlet" method="POST"
+                              style="display:flex; flex-direction:column; gap:15px;">
+
+                            <input type="hidden" name="titulo" value="${propuesta.titulo}">
+
+                            <label for="monto"><strong>Monto a colaborar:</strong></label>
+                            <input type="number" id="monto" name="monto" min="1" required
+                                   style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+
+                            <label for="tipoRetorno"><strong>Tipo de retorno:</strong></label>
+
+                            <c:choose>
+                                <c:when test="${propuesta.tipoRetorno eq 'Ambas'}">
+                                    <select id="tipoRetorno" name="tipoRetorno" required
+                                            style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+                                        <option value="">-- Seleccione --</option>
+                                        <option value="Entrada">Entrada</option>
+                                        <option value="Porcentaje">Porcentaje</option>
+                                    </select>
+                                </c:when>
+
+                                <c:when test="${propuesta.tipoRetorno eq 'Entrada'}">
+                                    <input type="hidden" name="tipoRetorno" value="Entrada">
+                                    <p style="margin:0; font-weight:bold; color:#2c3e50;">🎟️ Retorno: Entrada</p>
+                                </c:when>
+
+                                <c:when test="${propuesta.tipoRetorno eq 'Porcentaje'}">
+                                    <input type="hidden" name="tipoRetorno" value="Porcentaje">
+                                    <p style="margin:0; font-weight:bold; color:#2c3e50;">💰 Retorno: Porcentaje</p>
+                                </c:when>
+                            </c:choose>
+
+
+                            <button type="submit"
+                                    style="align-self:flex-start;
+                                    background:#3498db;
+                                    color:white;
+                                    border:none;
+                                    padding:10px 22px;
+                                    border-radius:5px;
+                                    font-size:15px;
+                                    font-weight:bold;
+                                    cursor:pointer;
+                                    box-shadow:0 2px 4px rgba(0,0,0,0.15);
+                                    transition:background 0.2s, transform 0.1s;">
+                                ✅ Confirmar colaboración
+                            </button>
+                        </form>
+                    </div>
+
+                    <script>
+                        const btn = document.getElementById('mostrarFormBtn');
+                        const form = document.getElementById('formColaboracion');
+                        btn.addEventListener('click', () => {
+                            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                            btn.textContent = form.style.display === 'block' ? '🔽 Ocultar formulario' : '🤝 Colaborar';
+                        });
+                    </script>
+                </c:if>
+
             </div>
             <div class="card">
 
